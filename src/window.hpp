@@ -5,9 +5,9 @@
 #ifndef WINDOW_HPP
 #define WINDOW_HPP
 
-#include <GL/glew.h>
 #include <string>
 #include "GLFW/glfw3.h"
+#include <GL/gl.h>
 
 namespace foo_engine{
     class window{
@@ -20,6 +20,8 @@ namespace foo_engine{
         ~window();
         void construct(GLFWmonitor *monitor, GLFWwindow *share);
         bool working();
+        void swap();
+        void clear();
     };
 }
 

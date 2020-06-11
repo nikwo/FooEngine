@@ -32,3 +32,11 @@ void window::construct(GLFWmonitor *monitor, GLFWwindow *share) {
 bool window::working() {
     return !glfwWindowShouldClose(glfwWindow);
 }
+
+void window::swap() {
+    glfwSwapBuffers(glfwWindow);
+}
+
+void window::clear() {
+    glClear(GL_COLOR_BUFFER_BIT);
+}

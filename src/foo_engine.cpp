@@ -18,6 +18,7 @@ void foo_engine::fooE::init() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    std::cout << glfwGetVersionString();
 }
 
 void foo_engine::fooE::configure_window(unsigned int w, unsigned int h, const char *name) {
@@ -30,4 +31,10 @@ void foo_engine::fooE::construct_window(GLFWmonitor *monitor, GLFWwindow *share)
 
 bool foo_engine::fooE::main_cycle() {
     return win.working();
+}
+
+void foo_engine::fooE::render_window() {
+    for(unsigned int vao : vertex_array_objects){
+        
+    }
 }

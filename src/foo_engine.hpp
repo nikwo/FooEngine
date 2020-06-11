@@ -22,6 +22,7 @@ namespace foo_engine {
         void construct_window(GLFWmonitor *monitor, GLFWwindow *share);
         void configure_flags();
         bool main_cycle();
+        void render_window();
     };
 }
 #endif //FOO_ENGINE_HPP
