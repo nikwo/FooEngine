@@ -18,6 +18,11 @@ window::~window() {
     glfwDestroyWindow(glfwWindow);
 }
 
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+    glViewport(0, 0, width, height);
+}
+
 void window::construct(GLFWmonitor *monitor, GLFWwindow *share) {
     glfwWindow = glfwCreateWindow(width, height, name.data(), monitor, share);
     if(!glfwWindow)
@@ -27,6 +32,18 @@ void window::construct(GLFWmonitor *monitor, GLFWwindow *share) {
         exit(1);
     }
     glfwMakeContextCurrent(glfwWindow);
+
+    glewExperimental = GL_TRUE;
+    if (glewInit() != GLEW_OK)
+    {
+        std::cout << "Failed to initialize GLEW" << std::endl;
+        exit(1);
+    }
+
+    const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+    monitor_w = mode->width;
+    monitor_h = mode->height;
+    glfwSetFramebufferSizeCallback(glfwWindow, framebuffer_size_callback);
 }
 
 bool window::working() {

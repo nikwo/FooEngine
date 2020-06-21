@@ -12,6 +12,7 @@ namespace foo_engine{
     class game_object{
     protected:
         glm::vec3 position;
+        glm::vec3 rotation;
         GLint vao;
     public:
         game_object();

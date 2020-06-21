@@ -4,6 +4,7 @@
 
 #include <iostream>
 
+#define GLEW_STATIC
 #include "foo_engine.hpp"
 
 foo_engine::fooE::fooE() {

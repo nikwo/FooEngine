@@ -21,6 +21,8 @@ namespace foo_engine{
         void construct(GLFWmonitor *monitor, GLFWwindow *share);
         bool working();
         GLFWwindow *get_window();
+        int monitor_w, monitor_h;
+
     };
 }
 
