@@ -1,6 +1,7 @@
 #version 330 core
 
-uniform mat4 camera;
+uniform mat4 projection;
+uniform mat4 view;
 
 in vec3 position;
 in vec2 uv;
@@ -12,5 +13,5 @@ out vec4 _color;
 void main(){
     _uv = uv;
     _color = color;
-    gl_Position = camera * vec4(position, 1);
+    gl_Position = projection * view * vec4(aPos, 1.0);
 }
