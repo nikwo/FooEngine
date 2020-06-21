@@ -6,6 +6,7 @@
 #define GAME_OBJECT_HPP
 
 #include "glm.hpp"
+#include "GLFW/glfw3.h"
 
 namespace foo_engine{
     class game_object{
