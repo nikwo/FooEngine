@@ -11,11 +11,13 @@ namespace foo_engine{
     class game_object{
     protected:
         glm::vec3 position;
+        GLint vao;
     public:
         game_object();
         ~game_object() = default;
         void translate();
         void rotate();
+
     };
 }
 

@@ -20,6 +20,7 @@ namespace foo_engine{
         ~window();
         void construct(GLFWmonitor *monitor, GLFWwindow *share);
         bool working();
+        GLFWwindow *get_window();
     };
 }
 

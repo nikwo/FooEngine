@@ -32,3 +32,7 @@ void window::construct(GLFWmonitor *monitor, GLFWwindow *share) {
 bool window::working() {
     return !glfwWindowShouldClose(glfwWindow);
 }
+
+GLFWwindow *window::get_window() {
+    return glfwWindow;
+}

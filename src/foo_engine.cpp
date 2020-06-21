@@ -6,7 +6,7 @@
 #include "foo_engine.hpp"
 
 foo_engine::fooE::fooE() {
-    vertex_array_objects = std::vector<unsigned int>();
+
 }
 
 void foo_engine::fooE::init() {
@@ -30,4 +30,12 @@ void foo_engine::fooE::construct_window(GLFWmonitor *monitor, GLFWwindow *share)
 
 bool foo_engine::fooE::main_cycle() {
     return win.working();
+}
+
+void foo_engine::fooE::clear() {
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+
+void foo_engine::fooE::swap() {
+    glfwSwapBuffers(win.get_window());
 }

@@ -13,7 +13,6 @@ namespace foo_engine {
     class fooE {
         window win;
         renderer ren;
-        std::vector<unsigned int> vertex_array_objects;
     public:
         void init();
         fooE();
@@ -22,6 +21,8 @@ namespace foo_engine {
         void construct_window(GLFWmonitor *monitor, GLFWwindow *share);
         void configure_flags();
         bool main_cycle();
+        static void clear();
+        void swap();
     };
 }
 #endif //FOO_ENGINE_HPP

@@ -7,14 +7,25 @@
 
 #include <GLFW/glfw3.h>
 #include "game_object.hpp"
+#include <queue>
+#include <string>
+#include <vector>
 
 namespace foo_engine{
+    class layer{
+    public:
+        std::string name;
+        std::vector<int> vaos;
+        explicit layer(const std::string &n){
+            name = n;
+        }
+    };
+
     class renderer{
     public:
         renderer();
         ~renderer()=default;
-        void clear();
-        void draw();
+        std::queue<layer> render_queue;
     };
 }
 
