@@ -12,14 +12,15 @@ namespace foo_engine{
     class game_object{
     protected:
         glm::vec3 position;
-        glm::vec3 rotation;
-        GLint vao;
+        glm::vec3 rotation_direction;
+        glm::vec3 scale;
+        GLuint vao;
     public:
         game_object();
         ~game_object() = default;
-        void translate();
-        void rotate();
-
+        glm::mat4 translate();
+        glm::mat4 rotate(GLfloat angle);
+        void send_data_to_gpu();
     };
 }
 
