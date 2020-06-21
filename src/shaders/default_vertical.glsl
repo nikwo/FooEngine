@@ -1,5 +1,6 @@
 #version 330 core
 
+uniform mat4 model;
 uniform mat4 projection;
 uniform mat4 view;
 
@@ -13,5 +14,5 @@ out vec4 _color;
 void main(){
     _uv = uv;
     _color = color;
-    gl_Position = projection * view * vec4(aPos, 1.0);
+    gl_Position = projection * view * model * vec4(position, 1.0);
 }

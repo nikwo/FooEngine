@@ -5,6 +5,8 @@
 #ifndef FOO_ENGINE_HPP
 #define FOO_ENGINE_HPP
 
+#include <GL/glew.h>
+#include "GLFW//glfw3.h"
 #include <vector>
 #include "window.hpp"
 #include "renderer.hpp"
@@ -23,6 +25,7 @@ namespace foo_engine {
         bool main_cycle();
         static void clear();
         void swap();
+        void draw(const std::string &layer);
     };
 }
 #endif //FOO_ENGINE_HPP

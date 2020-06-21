@@ -17,7 +17,7 @@ include_directories(third/glfw/include)
 include_directories(third/glm/glm)
 
 add_library(FooEngineGraphics STATIC ${FOOENGINE_SOURCES} ${FOOENGINE_HEADERS})
-target_link_libraries(FooEngineGraphics OpenGL::GL glfw)
+target_link_libraries(FooEngineGraphics OpenGL::GL glfw GLEW)
 
 add_executable(main main.cpp)
 target_link_libraries(main FooEngineGraphics)

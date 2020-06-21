@@ -6,6 +6,6 @@
 
 foo_engine::renderer::renderer() {
     //default renderer layers
-    render_queue.emplace(foo_engine::layer("world_space"));
-    render_queue.emplace(foo_engine::layer("UI"));
+    render_queue.emplace_back(foo_engine::layer("world_space"));
+    render_queue.emplace_back(foo_engine::layer("UI"));
 }

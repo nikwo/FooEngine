@@ -5,9 +5,9 @@
 #ifndef RENDERER_HPP
 #define RENDERER_HPP
 
+#include <GL/gl.h>
 #include <GLFW/glfw3.h>
 #include "game_object.hpp"
-#include <queue>
 #include <string>
 #include <vector>
 
@@ -25,7 +25,7 @@ namespace foo_engine{
     public:
         renderer();
         ~renderer()=default;
-        std::queue<layer> render_queue;
+        std::vector<layer> render_queue;
     };
 }
 
