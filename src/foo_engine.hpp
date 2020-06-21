@@ -26,6 +26,8 @@ namespace foo_engine {
         static void clear();
         void swap();
         void draw(const std::string &layer);
+        void add_to_queue(const std::string &layer, int vao_id);
+        void pop_from_queue(const std::string &layer, int vao_id);
     };
 }
 #endif //FOO_ENGINE_HPP

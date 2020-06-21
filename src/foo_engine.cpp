@@ -62,8 +62,39 @@ void foo_engine::fooE::draw(const std::string &layer) {
                     // затем отрисовываем только пользовательский интерфейс
                     glBindVertexArray(0);
                 }
-                it = ren.render_queue.end();
+                break;
                 //выход из цикла по итератору
+            }
+        }
+    }
+}
+
+void foo_engine::fooE::add_to_queue(const std::string &layer, int vao_id) {
+    for(auto it = ren.render_queue.begin(); it <= ren.render_queue.end(); ++it){
+        if(it->name.find(layer)){
+            bool unique_vao = true;
+            for(auto vao : it->vaos){
+                if(vao == vao_id) {
+                    unique_vao = false;
+                    break;
+                }
+            }
+            if(!unique_vao)
+                break;
+            else it->vaos.push_back(vao_id);
+            break;
+        }
+    }
+}
+
+void foo_engine::fooE::pop_from_queue(const std::string &layer, int vao_id) {
+    for(auto it = ren.render_queue.begin(); it <= ren.render_queue.end(); ++it){
+        if(it->name.find(layer)){
+            for(auto vao_it = it->vaos.begin(); vao_it <= it->vaos.end(); ++vao_it) {
+                if (*vao_it == vao_id) {
+                    it->vaos.erase(vao_it);
+                }
+                break;
             }
         }
     }
