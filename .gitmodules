@@ -7,3 +7,7 @@
 [submodule "third/SOIL"]
 	path = third/SOIL
 	url = https://github.com/paralin/soil
+[submodule "third/assimp"]
+	path = third/assimp
+	url = https://github.com/assimp/assimp
+
