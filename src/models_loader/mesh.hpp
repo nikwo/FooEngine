@@ -16,10 +16,13 @@ namespace foo_engine {
         glm::vec3 position;
         glm::vec3 normal;
         glm::vec2 texture_coords;
+        glm::vec3 tangent;
+        glm::vec3 bitangent;
     };
     struct texture{
         GLuint id;
         std::string type;
+        std::string path;
     };
     class mesh {
     public:
