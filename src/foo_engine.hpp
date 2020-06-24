@@ -15,6 +15,7 @@ namespace foo_engine {
     class fooE {
         window win;
         renderer ren;
+        double delta_time, time;
     public:
         void init();
         fooE();
@@ -24,10 +25,12 @@ namespace foo_engine {
         void configure_flags();
         bool main_cycle();
         static void clear();
+        static void clear(glm::vec4 clear_color);
         void swap();
         void draw(const std::string &layer);
         void add_to_queue(const std::string &layer, int vao_id);
         void pop_from_queue(const std::string &layer, int vao_id);
+        double get_delta_time();
     };
 }
 #endif //FOO_ENGINE_HPP

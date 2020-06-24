@@ -29,6 +29,8 @@ void foo_engine::fooE::configure_window(unsigned int w, unsigned int h, const ch
 
 void foo_engine::fooE::construct_window(GLFWmonitor *monitor, GLFWwindow *share) {
     win.construct(monitor, share);
+    time = glfwGetTime();
+    delta_time = 0;
 }
 
 bool foo_engine::fooE::main_cycle() {
@@ -41,6 +43,9 @@ void foo_engine::fooE::clear() {
 
 void foo_engine::fooE::swap() {
     glfwSwapBuffers(win.get_window());
+    double now = glfwGetTime();
+    delta_time = now - time;
+    time = now;
 }
 
 void foo_engine::fooE::draw(const std::string &layer) {
@@ -99,4 +104,13 @@ void foo_engine::fooE::pop_from_queue(const std::string &layer, int vao_id) {
             }
         }
     }
+}
+
+void foo_engine::fooE::clear(glm::vec4 clear_color) {
+    glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
+    clear();
+}
+
+double foo_engine::fooE::get_delta_time() {
+    return delta_time;
 }

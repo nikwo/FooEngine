@@ -11,9 +11,11 @@ add_subdirectory(third/assimp)
 find_package(OpenGL REQUIRED)
 
 file(GLOB_RECURSE FOOENGINE_SOURCES
-        ${CMAKE_SOURCE_DIR}/src/*.cpp)
+        ${CMAKE_SOURCE_DIR}/src/*.cpp
+        ${CMAKE_SOURCE_DIR}/src/models_loader/*.cpp)
 file(GLOB_RECURSE FOOENGINE_HEADERS
-        ${CMAKE_SOURCE_DIR}/src/*.hpp)
+        ${CMAKE_SOURCE_DIR}/src/*.hpp
+        ${CMAKE_SOURCE_DIR}/src/models_loader/*.hpp)
 
 include_directories(third/glfw/include)
 include_directories(third/glm/glm)
@@ -21,6 +23,7 @@ include_directories(third/SOIL/inc/SOIL)
 include_directories(third/assimp/include)
 
 add_library(FooEngineGraphics STATIC ${FOOENGINE_SOURCES} ${FOOENGINE_HEADERS})
+
 target_link_libraries(FooEngineGraphics OpenGL::GL glfw GLEW SOIL assimp)
 
 add_executable(main main.cpp)
