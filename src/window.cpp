@@ -44,6 +44,8 @@ void window::construct(GLFWmonitor *monitor, GLFWwindow *share) {
     monitor_w = mode->width;
     monitor_h = mode->height;
     glfwSetFramebufferSizeCallback(glfwWindow, framebuffer_size_callback);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_LIGHTING);
 }
 
 bool window::working() {

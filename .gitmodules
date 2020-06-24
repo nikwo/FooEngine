@@ -11,3 +11,6 @@
 	path = third/assimp
 	url = https://github.com/assimp/assimp
 
+[submodule "third/stb"]
+	path = third/stb
+	url = https://github.com/nothings/stb

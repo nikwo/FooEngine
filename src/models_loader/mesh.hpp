@@ -5,11 +5,11 @@
 #ifndef MESH_HPP
 #define MESH_HPP
 
-#include <glm.hpp>
-#include <GL/glew.h>
+
 #include <string>
 #include <vector>
 #include "../shader.hpp"
+#include <glm.hpp>
 
 namespace foo_engine {
     struct vertex{

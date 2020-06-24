@@ -3,12 +3,13 @@
 //
 
 #include <iostream>
-#include <stb_image_aug.h>
 #include "model.hpp"
 #include "assimp/Importer.hpp"
 #include "assimp/scene.h"
 #include "assimp/postprocess.h"
-
+#include "../camera.hpp"
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 foo_engine::model::model(const std::string &path) {
     load_model(path);
 }
@@ -41,6 +42,7 @@ unsigned int TextureFromFile(const char *path, const std::string &directory, boo
     glGenTextures(1, &textureID);
 
     int width, height, nrComponents;
+    stbi_set_flip_vertically_on_load(true);
     unsigned char *data = stbi_load(filename.c_str(), &width, &height, &nrComponents, 0);
     if (data)
     {
@@ -78,6 +80,7 @@ foo_engine::model::load_material_textures(aiMaterial *mat, aiTextureType type, s
     for(unsigned int i = 0; i < mat->GetTextureCount(type); i++)
     {
         aiString str;
+
         mat->GetTexture(type, i, &str);
         // check if texture was loaded before and if so, continue to next iteration: skip loading a new texture
         bool skip = false;
@@ -135,18 +138,23 @@ foo_engine::mesh foo_engine::model::process_mesh(aiMesh *mesh_obj, const aiScene
         else
             _vertex.texture_coords = glm::vec2(0.0f, 0.0f);
         // tangent
-        vector.x = mesh_obj->mTangents[i].x;
-        vector.y = mesh_obj->mTangents[i].y;
-        vector.z = mesh_obj->mTangents[i].z;
-        _vertex.tangent = vector;
+        if(mesh_obj->mTangents) {
+            vector.x = mesh_obj->mTangents[i].x;
+            vector.y = mesh_obj->mTangents[i].y;
+            vector.z = mesh_obj->mTangents[i].z;
+            _vertex.tangent = vector;
+        }
         // bitangent
-        vector.x = mesh_obj->mBitangents[i].x;
-        vector.y = mesh_obj->mBitangents[i].y;
-        vector.z = mesh_obj->mBitangents[i].z;
-        _vertex.bitangent = vector;
+        if(mesh_obj->mBitangents) {
+            vector.x = mesh_obj->mBitangents[i].x;
+            vector.y = mesh_obj->mBitangents[i].y;
+            vector.z = mesh_obj->mBitangents[i].z;
+            _vertex.bitangent = vector;
+        }
         vertices.push_back(_vertex);
+
     }
-    // now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
+    // now walk through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
     for(unsigned int i = 0; i < mesh_obj->mNumFaces; i++)
     {
         aiFace face = mesh_obj->mFaces[i];

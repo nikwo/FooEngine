@@ -5,7 +5,7 @@
 #ifndef RENDERER_HPP
 #define RENDERER_HPP
 
-#include <GL/gl.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "game_object.hpp"
 #include <string>
