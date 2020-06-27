@@ -14,11 +14,13 @@ foo_engine::mesh::mesh(std::vector<vertex> _vertices, std::vector<GLuint> _indic
 }
 
 void foo_engine::mesh::draw(foo_engine::shader &shader_object) {
-    unsigned int diffuseNr = 1;
+    unsigned int diffuseNr  = 1;
     unsigned int specularNr = 1;
+    unsigned int normalNr   = 1;
+    unsigned int heightNr   = 1;
     for(unsigned int i = 0; i < textures.size(); i++)
     {
-        glActiveTexture(GL_TEXTURE0 + i); // activate proper texture unit before binding
+        glActiveTexture(GL_TEXTURE0 + i); // active proper texture unit before binding
         // retrieve texture number (the N in diffuse_textureN)
         std::string number;
         std::string name = textures[i].type;
@@ -26,16 +28,19 @@ void foo_engine::mesh::draw(foo_engine::shader &shader_object) {
             number = std::to_string(diffuseNr++);
         else if(name == "texture_specular")
             number = std::to_string(specularNr++);
+        else if(name == "texture_normal")
+            number = std::to_string(normalNr++);
+        else if(name == "texture_height")
+            number = std::to_string(heightNr++);
 
-        shader_object.set_float(std::string("material.").append(name).append(number), i);
+        glUniform1i(glGetUniformLocation(shader_object.id, name.c_str()), i);
         glBindTexture(GL_TEXTURE_2D, textures[i].id);
     }
-    glActiveTexture(GL_TEXTURE0);
 
-    // draw mesh
     glBindVertexArray(vao);
     glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
+    glActiveTexture(GL_TEXTURE0);
 }
 
 void foo_engine::mesh::setup_mesh() {

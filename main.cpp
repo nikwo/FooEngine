@@ -16,6 +16,7 @@ int main(int argc, char* argv[]){
     engine.construct_window(nullptr, nullptr);
     shader s = shader("../src/shaders/default_vertical.glsl",
             "../src/shaders/default_fragmental.glsl");
+
     model m = model("/home/nikwo/Downloads/nanosuit/nanosuit.obj");
     camera cam = camera(glm::vec3(0,0,0));
 // #TODO: убрать отладочный код
@@ -29,16 +30,10 @@ int main(int argc, char* argv[]){
 
         // render the loaded model
         glm::mat4 model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, -0.7f, -10.0f)); // translate it down so it's at the center of the scene
+        model = glm::translate(model, glm::vec3(0.0f, -2.0f, -10.0f)); // translate it down so it's at the center of the scene
         model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));	// it's a bit too big for our scene, so scale it down
         model = glm::rotate(model, 3.14f * (float)glfwGetTime(), glm::vec3(0, 1.0f, 0));
         s.set_mat4("model", model);
-
-        GLfloat light0_diffuse[] = {0.4, 0.7, 0.2};
-        GLfloat light0_direction[] = {0.0, 0.0, 1.0, 0.0};
-        glEnable(GL_LIGHT0);
-        glLightfv(GL_LIGHT0, GL_DIFFUSE, light0_diffuse);
-        glLightfv(GL_LIGHT0, GL_POSITION, light0_direction);
 
         m.draw(s);
         engine.swap();

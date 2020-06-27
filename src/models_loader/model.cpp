@@ -33,16 +33,15 @@ void foo_engine::model::load_model(const std::string &path) {
     process_node(scene->mRootNode, scene);
 }
 
-unsigned int TextureFromFile(const char *path, const std::string &directory, bool gamma)
+unsigned int TextureFromFile(const char *path, const std::string &directory, bool gamma=false)
 {
     std::string filename = std::string(path);
     filename = directory + '/' + filename;
-
+    stbi_set_flip_vertically_on_load(true);
     unsigned int textureID;
     glGenTextures(1, &textureID);
 
     int width, height, nrComponents;
-    stbi_set_flip_vertically_on_load(true);
     unsigned char *data = stbi_load(filename.c_str(), &width, &height, &nrComponents, 0);
     if (data)
     {
@@ -80,7 +79,6 @@ foo_engine::model::load_material_textures(aiMaterial *mat, aiTextureType type, s
     for(unsigned int i = 0; i < mat->GetTextureCount(type); i++)
     {
         aiString str;
-
         mat->GetTexture(type, i, &str);
         // check if texture was loaded before and if so, continue to next iteration: skip loading a new texture
         bool skip = false;
@@ -96,7 +94,7 @@ foo_engine::model::load_material_textures(aiMaterial *mat, aiTextureType type, s
         if(!skip)
         {   // if texture hasn't been loaded already, load it
             texture _texture;
-            _texture.id = TextureFromFile(str.C_Str(), this->directory, false);
+            _texture.id = TextureFromFile(str.C_Str(), this->directory);
             _texture.type = typeName;
             _texture.path = str.C_Str();
             textures.push_back(_texture);
