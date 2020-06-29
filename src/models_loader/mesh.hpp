@@ -24,6 +24,11 @@ namespace foo_engine {
         std::string type;
         std::string path;
     };
+    struct material{
+        texture diffuse, specular;
+        float shininess;
+    };
+
     class mesh {
     public:
         std::vector<vertex> vertices;

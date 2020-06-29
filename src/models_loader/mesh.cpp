@@ -33,7 +33,8 @@ void foo_engine::mesh::draw(foo_engine::shader &shader_object) {
         else if(name == "texture_height")
             number = std::to_string(heightNr++);
 
-        glUniform1i(glGetUniformLocation(shader_object.id, name.c_str()), i);
+        glUniform1i(glGetUniformLocation(shader_object.id, ("mat."+name).c_str()), i);
+        shader_object.set_float("mat.shininess", 265.0f);
         glBindTexture(GL_TEXTURE_2D, textures[i].id);
     }
 

@@ -127,3 +127,7 @@ void foo_engine::shader::checkCompileErrors(GLuint shader, std::string type) {
         }
     }
 }
+
+void foo_engine::shader::set_vec3(const std::string &name, const glm::vec3 &vec) const {
+    glUniform3fv(glGetUniformLocation(id, name.c_str()), 1, &vec[0]);
+}
